@@ -1,13 +1,21 @@
-import React, { Fragment } from 'react';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
+import { Fragment } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 
 import Row from './Row';
+
 import getIsGameOver from '../redux/selectors/getIsGameOver';
 import getWinner from '../redux/selectors/getWinner';
 import getWinningCombination from '../redux/selectors/getWinningCombination';
 
-import './App.css';
+import {
+  headerStyle,
+  headingTextStyle,
+  mainStyle,
+  footerStyle,
+  getWinnerStyleStroke
+} from '../styles/App.css';
 
 const App = ({ isGameOver, winner, winningCombination }) => {
   let headingText = 'Click to play.';
@@ -20,31 +28,28 @@ const App = ({ isGameOver, winner, winningCombination }) => {
     }
   }
 
-  const headingTextClass = classNames({
-    'heading-text': true,
-    'winner-2': winner === 2,
-  });
-
-  const winnerStreakClass = winningCombination === null ?
-    `main` :
-    `main w${winningCombination.join('')}`
-
   return (
     <Fragment>
-      <header className="header">
+      <header css={headerStyle}>
         <h1>Tic Tac Toe</h1>
-        <h2 className={headingTextClass}>
+        <h2 css={css`
+          ${headingTextStyle};
+          ${winner === 2 ? `color: #c3423f;` : ``}
+        `}>
           {headingText}
         </h2>
       </header>
 
-      <main className={winnerStreakClass}>
+      <main css={css`
+        ${mainStyle};
+        ${winningCombination !== null ? getWinnerStyleStroke(winningCombination.join('')) : ``};
+      `}>
         <Row positions={[1, 2, 3]} />
         <Row positions={[4, 5, 6]} />
         <Row positions={[7, 8, 9]} />
       </main>
 
-      <footer className="footer">
+      <footer css={footerStyle}>
         <iframe
           src="https://ghbtns.com/github-btn.html?user=alebelcor&repo=react-tic-tac-toe&type=star&count=false"
           title="Star this repository on GitHub"

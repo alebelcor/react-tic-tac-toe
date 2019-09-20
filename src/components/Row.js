@@ -1,17 +1,20 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 
 import Space from './Space';
 
+import {
+  positionRowStyle
+} from '../styles/Row.css';
+
 const Row = ({ positions }) => {
   return (
-    <ol className="position-row">
+    <ol css={positionRowStyle}>
       {positions.map(position => {
         return (
           <Space
             key={position}
             position={position}
-            hasBorderTop={position !== 1 && position !== 2 && position !== 3}
-            hasBorderRight={position !== 3 && position !== 6 && position !== 9}
           />
         );
       })}

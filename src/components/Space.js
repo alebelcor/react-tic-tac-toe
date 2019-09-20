@@ -1,20 +1,23 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 
 import markSpace from '../redux/actions/markSpace';
 import reset from '../redux/actions/reset';
 import getIsGameOver from '../redux/selectors/getIsGameOver';
 
-const Space = ({ hasBorderRight, hasBorderTop, handleClick, handleReset, isGameOver, markedBy, position }) => {
-  const btnClass = classNames({
-    'position-btn': true,
-    'border-top': hasBorderTop,
-    'border-right': hasBorderRight,
-    'marked-1': markedBy === 1,
-    'marked-2': markedBy === 2,
-  });
+import {
+  positionStyle,
+  positionButtonStyle,
+  markedByOneStyle,
+  markedByTwoStyle,
+} from '../styles/Space.css';
 
+import {
+  screenReaderOnlyStyle
+} from '../styles/utils.css';
+
+const Space = ({ handleClick, handleReset, isGameOver, markedBy, position }) => {
   const onMarkSpace = () => {
     if (isGameOver) {
       return handleReset();
@@ -28,13 +31,20 @@ const Space = ({ hasBorderRight, hasBorderTop, handleClick, handleReset, isGameO
   }
 
   return (
-    <li className="position">
+    <li css={positionStyle}>
       <button
-        className={btnClass}
+        css={css`
+          ${positionButtonStyle};
+          ${!(position === 1 || position === 2 || position === 3) ? `border-top-width: 3px;` : ``};
+          ${!(position === 3 || position === 6 || position === 9) ? `border-right-width: 3px;` : ``};
+          ${markedBy === 1 ? markedByOneStyle : ``};
+          ${markedBy === 2 ? markedByTwoStyle : ``};
+          ${isGameOver ? `cursor: initial;` : ``};
+        `}
         type="button"
         onClick={onMarkSpace}
       >
-        <span className="sr-only">Position {position} of 9</span>
+        <span css={screenReaderOnlyStyle}>Position {position} of 9</span>
       </button>
     </li>
   );
