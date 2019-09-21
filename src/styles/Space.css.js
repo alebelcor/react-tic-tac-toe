@@ -2,8 +2,7 @@ import { css } from '@emotion/core';
 
 export const positionStyle = css`
   position: relative;
-  display: inline-block;
-  width: 33.3333%;
+  flex: 0 0 33.3333%;
   height: 120px;
   vertical-align: middle;
 `;
