@@ -8,9 +8,9 @@ export const positionStyle = css`
 `;
 
 export const positionButtonStyle = css`
+  border: 0;
   width: 100%;
   height: 100%;
-  border: 0;
   border-style: solid;
   border-color: #211a1e;
   background-color: #fff;
@@ -18,4 +18,5 @@ export const positionButtonStyle = css`
 
 export const markedStyle = css`
   cursor: not-allowed;
+  pointer-events: none;
 `;
