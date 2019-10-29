@@ -16,8 +16,8 @@ const store = configureStore({
 render(
   <Provider store={store}>
     <Global styles={indexStyle} />
-
     <App />
   </Provider>,
+
   document.getElementById('root')
 );
