@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Global, jsx } from '@emotion/core'
+import { jsx, Global } from '@emotion/core'
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
