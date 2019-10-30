@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
+import React from 'react';
 import { Fragment } from 'react';
 
 import Header from './Header';
