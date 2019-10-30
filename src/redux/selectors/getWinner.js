@@ -12,9 +12,8 @@ export default createSelector(
       return null;
     }
 
-    const firstMoveInWinningCombination = Number.parseInt(winningCombination[0], 10);
-    const winningCombinationFirstTurnIndex = turns.findIndex(turn => turn.position === firstMoveInWinningCombination);
-
-    return turns[winningCombinationFirstTurnIndex].player;
+    return turns
+      .find(turn => turn.position === winningCombination[0])
+      .player;
   }
 );
