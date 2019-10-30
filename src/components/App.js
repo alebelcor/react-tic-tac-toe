@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { Fragment } from 'react';
-import { connect } from 'react-redux';
-
-import Row from './Row';
+import { useSelector } from 'react-redux';
 
 import getIsGameOver from '../redux/selectors/getIsGameOver';
 import getWinner from '../redux/selectors/getWinner';
 import getWinningCombination from '../redux/selectors/getWinningCombination';
+
+import Row from './Row';
 
 import {
   headerStyle,
@@ -17,9 +17,12 @@ import {
   getWinnerStyleStroke
 } from '../styles/App.css';
 
-const App = ({ isGameOver, winner, winningCombination }) => {
-  let headingText = 'Click to play.';
+const App = () => {
+  const isGameOver = useSelector(getIsGameOver);
+  const winner = useSelector(getWinner);
+  const winningCombination = useSelector(getWinningCombination);
 
+  let headingText = 'Click to play.';
   if (isGameOver) {
     if (winner === null) {
       headingText = 'Draw. Click to play again.';
@@ -63,15 +66,4 @@ const App = ({ isGameOver, winner, winningCombination }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isGameOver: getIsGameOver(state),
-    winner: getWinner(state),
-    winningCombination: getWinningCombination(state),
-  }
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(App);
+export default App;

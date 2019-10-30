@@ -1,10 +1,13 @@
 /** @jsx jsx */
+import { useMemo } from 'react';
 import { jsx, css } from '@emotion/core';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import markSpace from '../redux/actions/markSpace';
 import reset from '../redux/actions/reset';
+
 import getIsGameOver from '../redux/selectors/getIsGameOver';
+import getMarkedBy from '../redux/selectors/getMarkedBy';
 
 import {
   positionStyle,
@@ -16,18 +19,33 @@ import {
   screenReaderOnlyStyle
 } from '../styles/utils.css';
 
-const Space = ({ handleClick, handleReset, isGameOver, markedBy, position }) => {
-  const onMarkSpace = () => {
+const Space = ({ position }) => {
+  const isGameOver = useSelector(getIsGameOver);
+
+  const selectMarkedBy = useMemo(getMarkedBy, []);
+  const markedBy = useSelector(
+    state => selectMarkedBy(state, position)
+  );
+
+  const dispatch = useDispatch();
+  const handleReset = () => {
+    dispatch(reset());
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
     if (isGameOver) {
-      return handleReset();
+      handleReset();
+      return;
     }
 
-    if (markedBy) {
-      return undefined;
+    if (markedBy > 0) {
+      return;
     }
 
-    return handleClick();
-  }
+    dispatch(markSpace(position));
+  };
 
   return (
     <li css={positionStyle}>
@@ -41,12 +59,12 @@ const Space = ({ handleClick, handleReset, isGameOver, markedBy, position }) => 
         `}
         type="button"
         aria-describedby={`position-${position}`}
-        onClick={onMarkSpace}
+        onClick={handleClick}
       >
         {markedBy > 0 && (
           <svg aria-hidden="true" fill={markedBy === 1 ? `#5bc0eb` : `#c3423f`} xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24">
-            {markedBy === 1 && <path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>}
-            {markedBy === 2 && <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z"/>}
+            {markedBy === 1 && <path d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z" />}
+            {markedBy === 2 && <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z" />}
           </svg>
         )}
 
@@ -62,30 +80,4 @@ const Space = ({ handleClick, handleReset, isGameOver, markedBy, position }) => 
   );
 }
 
-const mapStateToProps = (state, ownProps) => {
-  let markedBy;
-
-  state.turns.some(turn => {
-    if (turn.position === ownProps.position) {
-      markedBy = turn.player;
-      return true;
-    }
-
-    return false;
-  });
-
-  return {
-    isGameOver: getIsGameOver(state),
-    markedBy
-  };
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleClick: () => dispatch(markSpace(ownProps.position)),
-  handleReset: () => dispatch(reset())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Space);
+export default Space;

@@ -18,5 +18,4 @@ export const positionButtonStyle = css`
 
 export const markedStyle = css`
   cursor: not-allowed;
-  pointer-events: none;
 `;
