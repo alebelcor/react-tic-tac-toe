@@ -4,7 +4,7 @@ import { jsx } from '@emotion/core';
 import Space from './Space';
 
 import {
-  positionRowStyle
+  positionRowStyle,
 } from '../styles/Row.css';
 
 const Row = ({ positions }) => {
@@ -20,6 +20,6 @@ const Row = ({ positions }) => {
       })}
     </ol>
   );
-}
+};
 
 export default Row;

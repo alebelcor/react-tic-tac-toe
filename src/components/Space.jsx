@@ -16,7 +16,7 @@ import {
 } from '../styles/Space.css';
 
 import {
-  screenReaderOnlyStyle
+  screenReaderOnlyStyle,
 } from '../styles/utils.css';
 
 const Space = ({ position }) => {
@@ -78,6 +78,6 @@ const Space = ({ position }) => {
       </button>
     </li>
   );
-}
+};
 
 export default Space;

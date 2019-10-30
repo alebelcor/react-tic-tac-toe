@@ -1,25 +1,9 @@
 import { css } from '@emotion/core'
 
-export const headerStyle = css`
-  margin-bottom: 40px;
-  text-align: center;
-`;
-
-export const headingTextStyle = css`
-  color: #5bc0eb;
-`;
-
 export const mainStyle = css`
   position: relative;
   margin: 0 auto 40px;
   width: 360px;
-`;
-
-export const footerStyle = css`
-  position: relative;
-  margin: 0 auto;
-  width: 360px;
-  text-align: center;
 `;
 
 const winnerStyle = css`
