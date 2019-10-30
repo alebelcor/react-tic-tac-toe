@@ -70,7 +70,8 @@ const getPlayerTwoMarkedSpaces = state => state.turns
   .sort();
 
 export default createSelector(
-  [getPlayerOneMarkedSpaces, getPlayerTwoMarkedSpaces],
+  getPlayerOneMarkedSpaces,
+  getPlayerTwoMarkedSpaces,
   (playerOneMarkedSpaces, playerTwoMarkedSpaces) => {
     const playerOneWinningCombination = getPlayerWinningCombination(playerOneMarkedSpaces);
     if (playerOneWinningCombination) {

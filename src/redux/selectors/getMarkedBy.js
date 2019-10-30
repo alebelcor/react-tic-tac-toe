@@ -1,22 +1,13 @@
 import { createSelector } from 'reselect';
 
-const getMarkedBy = () => createSelector(
-  state => state.turns,
-  (state, position) => position,
+const getTurns = state => state.turns;
+const getPosition = (state, position) => position;
+
+export default () => createSelector(
+  getTurns,
+  getPosition,
   (turns, position) => {
-    let markedBy = 0;
-
-    turns.some(turn => {
-      if (turn.position === position) {
-        markedBy = turn.player;
-        return true;
-      }
-
-      return false;
-    });
-
-    return markedBy;
+    let turn = turns.find(turn => turn.position === position);
+    return (turn && turn.player) || null;
   }
 );
-
-export default getMarkedBy;
