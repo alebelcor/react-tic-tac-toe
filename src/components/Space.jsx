@@ -59,6 +59,7 @@ const Space = ({ position }) => {
         `}
         type="button"
         aria-describedby={`position-${position}`}
+        data-testid={`space-${position}`}
         onClick={handleClick}
       >
         {markedBy > 0 && (

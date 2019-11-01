@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Space should render a specific mark, when player 1 clicks it, and screen reader only text 1`] = `
+<DocumentFragment>
+  <li
+    class="css-1v8pj0r-Space"
+  >
+    <button
+      aria-describedby="position-1"
+      class="css-xy2ha3-Space"
+      data-testid="space-1"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        fill="#5bc0eb"
+        height="80"
+        viewBox="0 0 24 24"
+        width="80"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"
+        />
+      </svg>
+      <span
+        class="css-1qsia7v-Space"
+        id="position-1"
+      >
+        Position 1 of 9
+        <span>
+          , Selected by Player 1
+        </span>
+      </span>
+    </button>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Space should render a specific mark, when player 2 clicks it, and screen reader only text 1`] = `
+<DocumentFragment>
+  <li
+    class="css-1v8pj0r-Space"
+  >
+    <button
+      aria-describedby="position-2"
+      class="css-xy2ha3-Space"
+      data-testid="space-2"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        fill="#c3423f"
+        height="80"
+        viewBox="0 0 24 24"
+        width="80"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12z"
+        />
+      </svg>
+      <span
+        class="css-1qsia7v-Space"
+        id="position-2"
+      >
+        Position 2 of 9
+        <span>
+          , Selected by Player 2
+        </span>
+      </span>
+    </button>
+  </li>
+</DocumentFragment>
+`;
